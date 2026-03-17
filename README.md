@@ -216,23 +216,8 @@ Importar este link en Postman para acceder a todos los requests (autenticación,
 ---
 
 ## 👥 Autores
----
-<<<<<<< HEAD
-Nazarena Contreras
-
-Mary Lezama 
-
-=======
-- Nazarena Contreras  
-- Mary Lezama  
->>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
-
----
+- Nazarena Contreras
+- Mary Lezama
 
 ## 🚀 Proyecto académico
-
-<<<<<<< HEAD
-⭐ Si te gustó este proyecto, no olvides darle una estrella en GitHub
-=======
 Trabajo práctico desarrollado para la práctica de desarrollo de APIs REST con Node.js, Express y MongoDB.
->>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
