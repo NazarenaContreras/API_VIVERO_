@@ -216,7 +216,7 @@ Importar este link en Postman para acceder a todos los requests (autenticación,
 ---
 
 ## 👥 Autores
-
+---
 <<<<<<< HEAD
 Nazarena Contreras
 
