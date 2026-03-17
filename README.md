@@ -1,177 +1,167 @@
 <img width="1160" height="641" alt="image" src="https://github.com/user-attachments/assets/26766639-ce7d-4a4b-83df-f86a807ddc95" />
 
 
-## 🌱 API Vivero
+# 🌱 API Vivero
 
 API RESTful para la gestión de un vivero: clientes, plantas y ventas.
 
-📋 Descripción
+---
 
-Sistema backend desarrollado en Node.js y Express que permite administrar:
+## 📋 Descripción
 
-Clientes: Registro y gestión de información de clientes
+Sistema backend desarrollado con **Node.js** y **Express** que permite administrar un vivero mediante una API REST.  
+La aplicación permite gestionar clientes, catálogo de plantas y ventas, incluyendo autenticación segura mediante tokens JWT.
 
-Plantas: Catálogo de plantas con stock y precios
+Este proyecto fue desarrollado como trabajo práctico académico para practicar arquitectura de APIs, autenticación y manejo de base de datos.
 
-Ventas: Procesamiento de ventas con control de inventario
-
-Autenticación: Sistema seguro con JWT
-
+---
 
 ## 🚀 Tecnologías
 
-Node.js - Entorno de ejecución
-
-Express - Framework web
-
-JWT - Autenticación y autorización
-
-bcryptjs - Encriptación de contraseñas
-
-express-validator - Validación de datos
-
-UUID - Generación de IDs únicos
+- Node.js – Entorno de ejecución
+- Express – Framework para APIs
+- MongoDB – Base de datos NoSQL
+- Mongoose – Modelado de datos para MongoDB
+- JSON Web Token (JWT) – Autenticación
+- bcryptjs – Encriptación de contraseñas
+- express-validator – Validación de datos
+- dotenv – Manejo de variables de entorno
+- nodemon – Reinicio automático del servidor en desarrollo
 
 ---
+
 ## 📁 Estructura del Proyecto
 
-TPI-MODULO-3/
+```
+API_VIVERO/
 
 ├── Backend/
-
-│   ├── controllers/     # Lógica de controladores
-
-│   ├── services/        # Lógica de negocio
-
-│   ├── routes/          # Definición de rutas
-
-│   ├── models/          # Modelos de datos
-
-│   ├── middlewares/     # Middlewares (auth, validación, errores)
-
-│   └── data/            # Archivos JSON (base de datos)
-
-├── public/              # Frontend
-
-├── server.js            # Punto de entrada
-
-├── .env                 # Variables de entorno
-
-└── package.json         # Dependencias
+│   ├── controllers/        # Controladores de la API
+│   │
+│   ├── middlewares/        # Middlewares de autenticación, validación y errores
+│   │
+│   ├── models/             # Modelos de datos
+│   │
+│   ├── routes/             # Definición de rutas
+│   │
+│   └── services/           # Lógica de negocio
+│
+├── Public/                 # Archivos del frontend
+│
+├── .env                    # Variables de entorno
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+└── server.js               # Punto de entrada del servidor
+```
 
 ---
 
 ## ⚙️ Instalación
 
-1. Clonar el repositorio
+### 1. Clonar el repositorio
 
+```bash
 git clone https://github.com/tu-usuario/api-vivero.git
-
 cd api-vivero
+```
 
-2. Instalar dependencias
+### 2. Instalar dependencias
 
-npm install --save-dev nodemon body-parser
-
-express
-
-cors
-
-dotenv
-
-bcryptjs
-
-jsonwebtoken
-
-express-validator
-
-uuid
-
-3. Configurar variables de entorno
-
-Crear un archivo .env en la raíz del proyecto:
-
-NODE_ENV=development
-
-JWT_SECRET=tu_clave_super_secreta_minimo_32_caracteres
-
-PORT=3000
-
-
-4. Iniciar el servidor
-
-Modo desarrollo (con nodemon):
-
-npm run dev
-
-Modo producción:
-
-npm start
-
-El servidor estará corriendo en 👉 http://localhost:3000
-
+```bash
+npm install
+```
 
 ---
 
-##  📡 Endpoints principales
+### 3. Configurar variables de entorno
 
-*🔐 Autenticación*
+Crear un archivo `.env` en la raíz del proyecto:
 
-POST /auth/register → Crear usuario
+```env
+NODE_ENV=development
+PORT=3000
+JWT_SECRET=tu_clave_super_secreta
+MONGO_URI=mongodb://localhost:27017/api_vivero
+```
 
-POST /auth/login → Iniciar sesión
+---
 
-*🌿 Plantas*
+### 4. Iniciar el servidor
 
-GET /plants → Listar plantas
+Modo desarrollo:
 
-POST /plants → Crear planta
+```bash
+npm run dev
+```
 
-GET /plants/:id → Buscar planta por ID
+Modo producción:
 
-PUT /plants/:id → Actualizar planta
+```bash
+npm start
+```
 
-DELETE /plants/:id → Eliminar planta
+El servidor estará disponible en:
 
-*👥 Clientes*
+```
+http://localhost:3000
+```
 
-GET /clients → Litar clientes
+---
 
-GET /clients/:id → Buscar cliente por ID
+## 📡 Endpoints principales
 
-POST /clients → Crear cliente
+### 🔐 Autenticación
 
-PUT /clients/:id → Actualizar cliente 
+POST /auth/register → Crear usuario  
+POST /auth/login → Iniciar sesión  
 
-DELETE /clients/:id → Eliminar cliente
+---
 
-*🛒 Ventas*
+### 🌿 Plantas
 
-GET /sales  →  Listar ventas
+GET /plants → Listar plantas  
+POST /plants → Crear planta  
+GET /plants/:id → Buscar planta por ID  
+PUT /plants/:id → Actualizar planta  
+DELETE /plants/:id → Eliminar planta  
 
-GET /sales/:id  → Obtener venta por ID
+---
 
-POST /sales →  Crear venta
+### 👥 Clientes
 
-PUT /sales/:id/status →  Modificar estado de la venta
+GET /clients → Listar clientes  
+GET /clients/:id → Buscar cliente por ID  
+POST /clients → Crear cliente  
+PUT /clients/:id → Actualizar cliente  
+DELETE /clients/:id → Eliminar cliente  
 
-DELETE /sales/:id →  Eliminar venta
+---
+
+### 🛒 Ventas
+
+GET /sales → Listar ventas  
+GET /sales/:id → Obtener venta por ID  
+POST /sales → Crear venta  
+PUT /sales/:id/status → Modificar estado de la venta  
+DELETE /sales/:id → Eliminar venta  
 
 ---
 
 ## 🔒 Autenticación
 
-La API utiliza JWT (JSON Web Tokens) para autenticación.
+La API utiliza **JWT (JSON Web Tokens)** para autenticar usuarios.
 
-Cómo usar el token:
+### Uso del token
 
-Registrar usuario o iniciar sesión
+1. Registrar usuario o iniciar sesión  
+2. Obtener el token en la respuesta  
+3. Incluir el token en el header de las peticiones  
 
-Obtener el token de la respuesta
-
-Incluir el token en el header de las peticiones:
-
-Authorization: Bearer tu_token_jwt_aqui
+```
+Authorization: Bearer tu_token_jwt
+```
 
 ---
 
@@ -179,42 +169,64 @@ Authorization: Bearer tu_token_jwt_aqui
 
 La API valida automáticamente:
 
-Clientes: Email válido, teléfono mínimo 7 caracteres
+**Clientes**
+- Email válido
+- Teléfono mínimo 7 caracteres
 
-Plantas: Precio positivo, stock entero no negativo
+**Plantas**
+- Precio positivo
+- Stock entero no negativo
 
-Ventas: Cliente existe, stock suficiente, items válidos
+**Ventas**
+- Cliente existente
+- Stock suficiente
+- Items válidos
 
-Auth: Username mínimo 3 caracteres, password mínimo 6 caracteres
+**Auth**
+- Username mínimo 3 caracteres
+- Password mínimo 6 caracteres
 
 ---
 
-## 🛠️ Scripts Disponibles
+## 🛠️ Scripts disponibles
 
-npm start        # Iniciar servidor en producción
-
-npm run dev      # Iniciar servidor en desarrollo (nodemon)
+```bash
+npm start      # Iniciar servidor en producción
+npm run dev    # Iniciar servidor en desarrollo
+```
 
 ---
 
 ## 🌐 Deployment
 
-La API está lista para ser desplegada en plataformas como: Render
+La API puede ser desplegada en plataformas como **Render**.
 
-El puerto se configura automáticamente mediante process.env.PORT.
+El puerto se configura automáticamente mediante:
+
+```
+process.env.PORT
+```
 
 ---
 
 ## 👥 Autores
 
+<<<<<<< HEAD
 Nazarena Contreras
 
 Mary Lezama 
 
+=======
+- Nazarena Contreras  
+- Mary Lezama  
+>>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
 
 ---
-### ¡Listo! 🚀
 
-Desarrollado con ❤️ por el equipo del Vivero.
+## 🚀 Proyecto académico
 
+<<<<<<< HEAD
 ⭐ Si te gustó este proyecto, no olvides darle una estrella en GitHub
+=======
+Trabajo práctico desarrollado para la práctica de desarrollo de APIs REST con Node.js, Express y MongoDB.
+>>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
