@@ -75,9 +75,18 @@ const authValidator = [
     .isLength({ min: 6 }).withMessage('La contrasena debe tener al menos 6 caracteres'),
 ];
 
+// Validator para actualizar estado de venta
+const updateSaleStatusValidator = [
+  body('status')
+  .notEmpty().withMessage('El estado es obligatorio')
+  .isIn(['pendiente', 'pagado', 'entregado', 'cancelado'])
+  .withMessage('Estado invalido. Estados permitidos: pendiente, pagado, entregado, cancelado'),
+];
+
 module.exports = {
     plantValidator, 
     clientValidator,
     saleValidator,
+    updateSaleStatusValidator,
     authValidator
 };

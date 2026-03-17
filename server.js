@@ -37,6 +37,9 @@ app.use(cors());
 // Body parser - Parsea JSON en requests
 app.use(express.json());
 
+// Servir archivos del frontend
+app.use(express.static('public'));
+
 // ========== IMPORTAR RUTAS ==========
 const authRoutes = require('./Backend/routes/authRoutes');
 const clientRoutes = require('./Backend/routes/clientRoutes');

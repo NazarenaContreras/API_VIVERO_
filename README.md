@@ -211,7 +211,6 @@ Nazarena Contreras
 
 Mary Lezama 
 
-Rocio Ibañez
 
 ---
 ### ¡Listo! 🚀
