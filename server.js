@@ -38,6 +38,9 @@ app.use(helmet({
   contentSecurityPolicy: false
 }));
 
+// Servir archivos del frontend
+app.use(express.static('Public'));
+
 // Seguridad de Tráfico (Rate Limit)
 const limiter = rateLimit({
   windowMs: 30 * 1000, // 30 segundos
@@ -55,9 +58,6 @@ app.use(cors());
 
 // Body parser - Parsea JSON en requests
 app.use(express.json());
-
-// Servir archivos del frontend
-app.use(express.static('Public'));
 
 // ========== IMPORTAR RUTAS ==========
 const authRoutes = require('./Backend/routes/authRoutes');
