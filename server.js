@@ -46,7 +46,10 @@ app.use(
   })
 );
 
-// Control de Tráfico (Rate Limit)
+// Servir archivos del frontend
+app.use(express.static('Public'));
+
+// Seguridad de Tráfico (Rate Limit)
 const limiter = rateLimit({
   windowMs: 30 * 1000, // 30 segundos
   max: 10, // Aumentado a 10 para evitar bloqueos accidentales en pruebas
@@ -61,10 +64,6 @@ app.use(cors());
 
 // Lectura de datos JSON
 app.use(express.json());
-
-// ========== ARCHIVOS ESTÁTICOS (FRONTEND) ==========
-// Importante: Esto sirve tu index.html, style.css y script.js
-app.use(express.static('Public')); 
 
 // ========== IMPORTAR RUTAS ==========
 const authRoutes = require('./Backend/routes/authRoutes');

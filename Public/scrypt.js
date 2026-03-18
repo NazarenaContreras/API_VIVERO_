@@ -12,7 +12,11 @@ async function getPlants() {
             throw new Error('Error en la respuesta del servidor');
         }
 
-        const data = await response.json();
+    data.data.forEach(plant => {
+      const li = document.createElement("li");
+      li.textContent = plant.name + " - $" + plant.price;
+      list.appendChild(li);
+    });
 
         // Limpiamos la lista
         listElement.innerHTML = '';
