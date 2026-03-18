@@ -1,5 +1,4 @@
-<img width="1160" height="641" alt="image" src="https://github.com/https://modoagro.com/blog/wp-content/uploads/2024/07/Invernaderos-y-Viveros-ModoAgro.webp" />
-
+<img width="1160" height="641" alt="imagen de un vivero" src="https://modoagro.com/blog/wp-content/uploads/2024/07/Invernaderos-y-Viveros-ModoAgro.webp" />
 
 # 🌱 API Vivero
 
