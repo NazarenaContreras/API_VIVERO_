@@ -34,7 +34,9 @@ connectDB();
 // ========== MIDDLEWARES GLOBALES ==========
 
 // Seguridad De HEADERS
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 
 // Seguridad de Tráfico (Rate Limit)
 const limiter = rateLimit({
