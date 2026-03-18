@@ -1,4 +1,4 @@
-<img width="1160" height="641" alt="image" src="https://github.com/user-attachments/assets/26766639-ce7d-4a4b-83df-f86a807ddc95" />
+<img width="1160" height="641" alt="image" src="https://github.com/https://modoagro.com/blog/wp-content/uploads/2024/07/Invernaderos-y-Viveros-ModoAgro.webp" />
 
 
 # 🌱 API Vivero
@@ -27,6 +27,8 @@ Este proyecto fue desarrollado como trabajo práctico académico para practicar 
 - express-validator – Validación de datos
 - dotenv – Manejo de variables de entorno
 - nodemon – Reinicio automático del servidor en desarrollo
+- Helmet  - Header de seguridad para ocultar huellas, para prevenir inyecciones y para el control de Contenido
+- Rate Limiting - Para evitas ataques de fuerza bruta y proteger tus recursos
 
 ---
 
@@ -73,6 +75,10 @@ cd api-vivero
 npm install
 
 --save-dev nodemon
+
+helmet
+
+express-rate-limit
 
 body-parser
 
