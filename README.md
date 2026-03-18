@@ -71,6 +71,26 @@ cd api-vivero
 
 ```bash
 npm install
+
+--save-dev nodemon
+
+body-parser
+
+express
+
+cors
+
+dotenv
+
+bcryptjs
+
+jsonwebtoken
+
+express-validator
+
+uuid
+
+mongoose
 ```
 
 ---
