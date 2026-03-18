@@ -38,7 +38,7 @@ app.use(cors());
 app.use(express.json());
 
 // Servir archivos del frontend
-app.use(express.static('public'));
+app.use(express.static('Public'));
 
 // ========== IMPORTAR RUTAS ==========
 const authRoutes = require('./Backend/routes/authRoutes');
