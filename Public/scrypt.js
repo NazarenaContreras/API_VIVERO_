@@ -16,3 +16,5 @@ async function getPlants() {
     console.error("Error:", error);
   }
 }
+
+document.getElementById('btnPlantas').addEventListener('click', getPlants);
