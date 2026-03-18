@@ -234,7 +234,7 @@ process.env.PORT
 ### 📮 Colección de Postman
 La colección de endpoints usada para probar la API está disponible en el siguiente enlace:
 
-[Ver colección en Postman](https://nazarenacontreras9-3919597.postman.co/workspace/Nazarena-Con's-Workspace~ee8cbf6c-4829-4536-8941-4a37920e4a46?action=share&source=copy-link&creator=48089822)
+[Ver colección en Postman](https://documenter.getpostman.com/view/47327494/2sB3QNpTcK)
 
 Importar este link en Postman para acceder a todos los requests (autenticación, plantas, clientes y ventas).
 
