@@ -13,6 +13,8 @@ const connectDB = require("./Backend/database");
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit')
 const dotenv = require('dotenv');
 
 
@@ -30,6 +32,21 @@ const app = express();
 connectDB();
 
 // ========== MIDDLEWARES GLOBALES ==========
+
+// Seguridad De HEADERS
+app.use(helmet());
+
+// Seguridad de Tráfico (Rate Limit)
+const limiter = rateLimit({
+  windowMs: 30 * 1000, // 30 segundos
+  max: 3, // Límite de 3 peticiones por IP en ese tiempo
+  message: 'Demasiados intentos, intenta de nuevo en 15 minutos.',
+  standardHeaders: true, // Devuelve info de límite en los headers `RateLimit-*`
+  legacyHeaders: false, // Desactiva los headers antiguos `X-RateLimit-*`
+});
+
+// Aplicar el limitador a todas las rutas
+app.use(limiter);
 
 // CORS - Permite peticiones desde otros dominios
 app.use(cors());
@@ -71,6 +88,14 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.send('¡Hola! Mi app ahora es más segura.');
+});
+
+app.get('/', (req, res) => {
+  res.send('API protegida y con límite de tráfico.');
+});
+
 // ========== RUTAS DE LA API ==========
 app.use('/auth', authRoutes);
 app.use('/clients', clientRoutes);
@@ -101,7 +126,9 @@ app.listen(PORT, () => {
   console.log(`   - Clientes: http://localhost:${PORT}/clients`);
   console.log(`   - Plantas: http://localhost:${PORT}/plants`);
   console.log(`   - Ventas: http://localhost:${PORT}/sales`);
+  console.log("Servidor 100% seguro");
   console.log('=================================');
+
 });
 
 // ========== MANEJO DE ERRORES NO CAPTURADOS ==========

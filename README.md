@@ -1,5 +1,4 @@
-<img width="1160" height="641" alt="image" src="https://github.com/user-attachments/assets/26766639-ce7d-4a4b-83df-f86a807ddc95" />
-
+<img width="1160" height="641" alt="imagen de un vivero" src="https://modoagro.com/blog/wp-content/uploads/2024/07/Invernaderos-y-Viveros-ModoAgro.webp" />
 
 # 🌱 API Vivero
 
@@ -27,6 +26,8 @@ Este proyecto fue desarrollado como trabajo práctico académico para practicar 
 - express-validator – Validación de datos
 - dotenv – Manejo de variables de entorno
 - nodemon – Reinicio automático del servidor en desarrollo
+- Helmet  - Header de seguridad para ocultar huellas, para prevenir inyecciones y para el control de Contenido
+- Rate Limiting - Para evitas ataques de fuerza bruta y proteger tus recursos
 
 ---
 
@@ -71,6 +72,30 @@ cd api-vivero
 
 ```bash
 npm install
+
+--save-dev nodemon
+
+helmet
+
+express-rate-limit
+
+body-parser
+
+express
+
+cors
+
+dotenv
+
+bcryptjs
+
+jsonwebtoken
+
+express-validator
+
+uuid
+
+mongoose
 ```
 
 ---
@@ -206,27 +231,18 @@ El puerto se configura automáticamente mediante:
 ```
 process.env.PORT
 ```
+### 📮 Colección de Postman
+La colección de endpoints usada para probar la API está disponible en el siguiente enlace:
+
+[Ver colección en Postman](https://nazarenacontreras9-3919597.postman.co/workspace/Nazarena-Con's-Workspace~ee8cbf6c-4829-4536-8941-4a37920e4a46?action=share&source=copy-link&creator=48089822)
+
+Importar este link en Postman para acceder a todos los requests (autenticación, plantas, clientes y ventas).
 
 ---
 
 ## 👥 Autores
-
-<<<<<<< HEAD
-Nazarena Contreras
-
-Mary Lezama 
-
-=======
-- Nazarena Contreras  
-- Mary Lezama  
->>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
-
----
+- Nazarena Contreras
+- Mary Lezama
 
 ## 🚀 Proyecto académico
-
-<<<<<<< HEAD
-⭐ Si te gustó este proyecto, no olvides darle una estrella en GitHub
-=======
 Trabajo práctico desarrollado para la práctica de desarrollo de APIs REST con Node.js, Express y MongoDB.
->>>>>>> 7491b835ac6950560aa4ed386792b36c5ecc3065
