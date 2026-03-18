@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>API Vivero</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Vivero - Panel de Control</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>🌱 API Vivero</h1>
-<p>Frontend de prueba para la API.</p>
+    <div class="container">
+        <img src="https://modoagro.com/blog/wp-content/uploads/2024/07/Invernaderos-y-Viveros-ModoAgro.webp" 
+             alt="Vivero Profesional" class="header-image">
 
-<button onclick="getPlants()">Ver Plantas</button>
+        <h1>🌱 API Vivero</h1>
+        <p>Gestiona el inventario de tus plantas de forma segura.</p>
 
-<ul id="plantsList"></ul>
+        <button id="btnVer">Ver Plantas</button>
 
-<script src="script.js"></script>
+        <ul id="plantsList"></ul>
+    </div>
 
+    <script src="script.js"></script>
 </body>
 </html>

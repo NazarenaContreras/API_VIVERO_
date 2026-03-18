@@ -1,12 +1,61 @@
+/* General */
 body {
-  font-family: Arial;
-  padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff; /* Fondo Blanco */
+    color: #000000;            /* Letras Negras */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Imagen Superior */
+.header-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Botón Verde con Letras Negras */
 button {
-  padding: 10px;
-  background: green;
-  color: white;
-  border: none;
-  cursor: pointer;
+    padding: 12px 25px;
+    background-color: #2ecc71; /* Verde */
+    color: #000000;            /* Letras Negras */
+    border: 2px solid #27ae60;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #27ae60;
+}
+
+/* Lista de Plantas */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    text-align: left;
+}
+
+li {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #2ecc71;
+    border-radius: 5px;
+    color: #333;
 }

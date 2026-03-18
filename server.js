@@ -9,53 +9,62 @@
  * - Listo para despliegue en Render
  */
 
-const connectDB = require("./Backend/database");
-
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
-
+const connectDB = require("./Backend/database");
 
 // Inicializar configuración .env
 dotenv.config();
 
-// Verificar que el  JWT_SECRET este configurado
-if (!process.env.JWT_SECRET){
+// Verificar JWT_SECRET
+if (!process.env.JWT_SECRET) {
   console.error('❌ ERROR: JWT_SECRET no está definido en .env');
   process.exit(1);
 }
 
 const app = express();
 
+// Conectar a la base de datos
 connectDB();
 
-// ========== MIDDLEWARES GLOBALES ==========
+// ========== MIDDLEWARES DE SEGURIDAD ==========
 
-// Seguridad De HEADERS
-app.use(helmet());
+// Seguridad de Headers con CSP ajustado para el Frontend
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'unsafe-inline'"], 
+        "img-src": ["'self'", "https:", "data:"],
+      },
+    },
+  })
+);
 
-// Seguridad de Tráfico (Rate Limit)
+// Control de Tráfico (Rate Limit)
 const limiter = rateLimit({
   windowMs: 30 * 1000, // 30 segundos
-  max: 3, // Límite de 3 peticiones por IP en ese tiempo
-  message: 'Demasiados intentos, intenta de nuevo en 15 minutos.',
-  standardHeaders: true, // Devuelve info de límite en los headers `RateLimit-*`
-  legacyHeaders: false, // Desactiva los headers antiguos `X-RateLimit-*`
+  max: 10, // Aumentado a 10 para evitar bloqueos accidentales en pruebas
+  message: 'Demasiados intentos, intenta de nuevo en un momento.',
+  standardHeaders: true,
+  legacyHeaders: false,
 });
-
-// Aplicar el limitador a todas las rutas
 app.use(limiter);
 
-// CORS - Permite peticiones desde otros dominios
+// Permisos de comunicación entre dominios
 app.use(cors());
 
-// Body parser - Parsea JSON en requests
+// Lectura de datos JSON
 app.use(express.json());
 
-// Servir archivos del frontend
-app.use(express.static('public'));
+// ========== ARCHIVOS ESTÁTICOS (FRONTEND) ==========
+// Importante: Esto sirve tu index.html, style.css y script.js
+app.use(express.static('Public')); 
 
 // ========== IMPORTAR RUTAS ==========
 const authRoutes = require('./Backend/routes/authRoutes');
@@ -64,22 +73,9 @@ const plantRoutes = require('./Backend/routes/plantRoutes');
 const saleRoutes = require('./Backend/routes/saleRoutes');
 const { errorHandler, notFoundHandler } = require('./Backend/middlewares/errorHandler');
 
-// ========== RUTA RAIZ (Health Check) ==========
-app.get('/', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: '🌱 API VIVERO funcionando correctamente',
-    version: '1.0.0',
-    endpoints: {
-      auth: '/auth',
-      clients: '/clients',
-      plants: '/plants',
-      sales: '/sales',
-    },
-  });
-});
+// ========== RUTAS DE LA API ==========
 
-// Health check endpoint (util para Render y monitoreo)
+// Ruta de salud del sistema
 app.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
@@ -88,58 +84,28 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.send('¡Hola! Mi app ahora es más segura.');
-});
-
-app.get('/', (req, res) => {
-  res.send('API protegida y con límite de tráfico.');
-});
-
-// ========== RUTAS DE LA API ==========
+// Montaje de rutas
 app.use('/auth', authRoutes);
 app.use('/clients', clientRoutes);
-app.use('/plants', plantRoutes);
+app.use('/plants', plantRoutes); // 
 app.use('/sales', saleRoutes);
 
-// Menejo de rutas no encontradas (404)
+// Manejo de rutas no encontradas y errores globales
 app.use(notFoundHandler);
-
-//  Manejo de errores global
 app.use(errorHandler);
 
 // ========== INICIAR SERVIDOR ==========
-
-// Puerto
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log('=================================');
-  console.log(`🚀 Servidor iniciado exitosamente`);
-  console.log(`📡 Puerto: ${PORT}`);
-  console.log(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔐 JWT Secret: ${process.env.JWT_SECRET ? '✅ Configurado' : '❌ No configurado'}`);
+  console.log(`🚀 SERVIDOR VIVERO SEGURO`);
+  console.log(`📡 URL Local: http://localhost:${PORT}`);
   console.log('=================================');
-  console.log(`📍 Endpoints disponibles:`);
-  console.log(`   - Raiz: http://localhost:${PORT}/`);
-  console.log(`   - Auth: http://localhost:${PORT}/auth`);
-  console.log(`   - Clientes: http://localhost:${PORT}/clients`);
-  console.log(`   - Plantas: http://localhost:${PORT}/plants`);
-  console.log(`   - Ventas: http://localhost:${PORT}/sales`);
-  console.log("Servidor 100% seguro");
-  console.log('=================================');
-
 });
 
-// ========== MANEJO DE ERRORES NO CAPTURADOS ==========
-// Captura errores no manejados
-process.on('uncaughtException', (error) => {
-  console.error('❌ Uncaught Exception:', error);
-  process.exit(1);
-});
-
-// Captura promesas rechazadas no manejadas
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('❌ Unhandled Rejection:', reason);
+// Manejo de errores críticos
+process.on('uncaughtException', (err) => {
+  console.error('❌ Error Crítico:', err);
   process.exit(1);
 });
