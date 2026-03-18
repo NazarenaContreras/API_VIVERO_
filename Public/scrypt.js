@@ -6,7 +6,7 @@ async function getPlants() {
     const list = document.getElementById('plantsList');
     list.innerHTML = "";
 
-    data.forEach(plant => {
+    data.data.forEach(plant => {
       const li = document.createElement("li");
       li.textContent = plant.name + " - $" + plant.price;
       list.appendChild(li);
