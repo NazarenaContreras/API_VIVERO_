@@ -246,3 +246,9 @@ Importar este link en Postman para acceder a todos los requests (autenticación,
 
 ## 🚀 Proyecto académico
 Trabajo práctico desarrollado para la práctica de desarrollo de APIs REST con Node.js, Express y MongoDB.
+
+Es tan segura que si un bot intenta atacar nuestra API Vivero, se va a encontrar con una pared. Nuesto servidor es ahora:
+
+Invisible: No revela que usa Express.
+Resistente: No permite ataques básicos de inyección.
+Antisaturación: No se deja tumbar por peticiones repetitivas.
